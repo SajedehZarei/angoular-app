@@ -1,0 +1,83 @@
+@if(textLabel != ''){
+<app-label
+  [textLabel]="textLabel"
+  [customClassLabel]="classCustomLabel"
+  [isRequired]="controlName.hasError('required') ? true : false"
+>
+</app-label>
+}
+
+
+<div class="input-group flex w-full relative">
+  <div class="input-group-prepend">
+       @if(controlName.value){
+<i
+      [ngClass]="controlName.disabled ? 'event-none' : ''"
+      
+      class="flex las la-times cursor-pointer align-items-center input-group-text text-red-700 "
+      aria-hidden="true"
+      (click)="resetDate()"
+    ></i>
+    }@else{
+<i
+      [ngClass]="controlName.disabled ? 'event-none' : ''"
+      [class]="icon"
+      class="flex align-items-center input-group-text text-second-gray text-xl"
+      aria-hidden="true"
+      (click)="actionsShowContent()"
+    ></i>
+    }
+  </div>
+  <ng-persian-datepicker
+    (dateOnSelect)="onSelect($event)"
+    class="w-full p-0 relative"
+    [dateFormat]="'YYYY-MM-DD'"
+    [dateGregorianFormat]="'YYYY-MM-DD'"
+    (uiIsVisible)="(true)"
+    [uiTheme]="uiTheme"
+    [dateMin]="dateMin"
+    [dateMax]="dateMax"
+    [uiYearView]="true"
+    [uiMonthView]="true"
+    [uiHideAfterSelectDate]="true"
+    [uiHideOnOutsideClick]="true"
+    [uiTodayBtnEnable]="true"
+    [timeEnable]="false"
+    [timeShowSecond]="false"
+    [timeMeridian]="false"
+    [dateInitValue]="false"
+    [isView]="isView"
+  >
+    <input
+      [placeholder]="placeholder"
+      (input)="changeValue($event)"
+      (blur)="istouched($event)"
+      type="text"
+      class="input-style"
+      maxlength="10"
+      [disabled]="controlName.disabled"
+      [(ngModel)]="UiFormControl.value"
+      aria-label="Datepicker Input"
+      readonly
+      [ngClass]="[
+        isValidation && isActivetouched
+          ? (UiFormControl.value && controlName.disabled) ||
+            (controlName.valid && UiFormControl.value != '')
+            ? ''
+            : 'border-red-600'
+          : '',
+        customClass
+      ]"
+    />
+  </ng-persian-datepicker>
+</div>
+
+@if (isValidation) {
+<div>
+  <input-validation-list
+    class="relative flex"
+    [controlName]="controlName"
+    [hasTouched]="isActivetouched"
+  ></input-validation-list>
+</div>
+}

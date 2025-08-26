@@ -1,0 +1,206 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url(../public/css/toaster.css);
+@import url(../public/css/dialog.css);
+@import url(../public/css/wizard.css);
+@import "tailwindcss";
+
+/* custom font*/
+@font-face {
+  font-family: "Vazir";
+  src: url("../public/fonts/Vazir.eot"); /* IE9 Compat Modes */
+  src: url("../public/fonts/Vazir.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../public/fonts/Vazir.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("../public/fonts/Vazir.woff") format("woff"); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: "iran-sans";
+  src: url("../public/fonts/iran-sans/iran-sans-400.eot");
+  src: url("../public/fonts/iran-sans/iran-sans-400.eot?#iefix")
+      format("embedded-opentype"),
+    url("../public/fonts/iran-sans/iran-sans-400.woff2") format("woff2"),
+    url("../public/fonts/iran-sans/iran-sans-400.woff") format("woff"),
+    url("../public/fonts/iran-sans/iran-sans-400.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "iran-sans";
+  src: url("../public/fonts/iran-sans/iran-sans-700.eot");
+  src: url("../public/fonts/iran-sans/iran-sans-700.eot?#iefix")
+      format("embedded-opentype"),
+    url("../public/fonts/iran-sans/iran-sans-700.woff2") format("woff2"),
+    url("../public/fonts/iran-sans/iran-sans-700.woff") format("woff"),
+    url("../public/fonts/iran-sans/iran-sans-700.ttf") format("truetype");
+  font-weight: 700;
+}
+
+body {
+  font-family: iran-sans;
+  direction: rtl;
+  background-color: #f1f1f1;
+}
+
+@theme {
+  --color-orange: #fb972a;
+  --color-red: #f7284a;
+  --color-gray: #f3f3f3;
+  --color-second-gray: #9ca3af;
+  --color-third-gray: #42424a;
+  --color-fourth-gray: #162d3a;
+  --color-seventh-gray: #d4d7e3;
+  --color-eight-gray: #f7fbff;
+  --color-nine-gray: #fafafa;
+  --color-blue: #1890ff;
+  --color-second-blue: #dbeafe;
+  --color-third-blue: #0f61ad;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+  label {
+    color: rgba(38, 56, 113, 1);
+  }
+  p {
+    line-height: 2rem;
+  }
+  i {
+    vertical-align: middle;
+  }
+}
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  outline: unset !important;
+  outline-offset: unset !important;
+  --tw-ring-inset: unset !important;
+  --tw-ring-offset-width: unset !important;
+  --tw-ring-offset-color: unset !important;
+  --tw-ring-color: unset !important;
+  --tw-ring-offset-shadow: unset !important;
+  --tw-ring-shadow: unset !important;
+  box-shadow: unset !important;
+  border-color: unset !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  -webkit-text-fill-color: black !important;
+  appearance: none !important;
+}
+
+@layer components {
+  /*box*/
+  .style-box {
+    @apply bg-white rounded-lg p-4 shadow-[0px_20px_27px_rgba(0,0,0,0.05)] relative mb-7;
+  }
+  .style-box .title-box {
+    @apply flex mb-7 text-[var(--color-third-gray)];
+  }
+  .style-box .title-box h5 {
+    @apply font-bold border-r-4 self-center border-[var(--color-blue)] pr-2;
+  }
+
+  .style-box .footer-box {
+    @apply border-t-2 border-gray-100 pt-4 mt-4 flex justify-end;
+  }
+
+  /*button*/
+  .style-btn-icon button {
+    @apply self-center px-2 cursor-pointer duration-300 py-1 text-lg ;
+  }
+   .style-btn {
+    @apply rounded-md py-2 duration-200 text-white px-5 text-sm cursor-pointer;
+  }
+  .style-btn-black {
+    @apply text-white bg-[var(--color-fourth-gray)] hover:bg-[var(--color-third-gray)];
+  }
+
+  .style-btn-gray {
+    @apply text-white bg-[var(--color-second-gray)] hover:bg-[var(--color-third-gray)];
+  }
+
+  .style-btn-blue {
+    @apply text-white bg-[var(--color-blue)] hover:bg-[var(--color-third-blue)];
+  }
+
+  .style-btn-red {
+    @apply hover:text-[var(--color-blue)] text-[var(--color-red)];
+  }
+
+  /*input*/
+   .input-style {
+    @apply block  p-2.5  border-2 border-[var(--color-seventh-gray)] text-[var(--color-third-gray)]   rounded-xl   w-full disabled:bg-gray-100;
+  }
+  .input-style::placeholder {
+  @apply text-[#9a9a9a] opacity-100 text-base
+}
+
+  /*ng-select*/
+  .ng-select-style ng-select {
+    @apply relative;
+  }
+  .ng-select-style .ng-select.ng-select-single .ng-select-container {
+    @apply !py-5.5 !h-0;
+  }
+  .ng-select-style ng-select .ng-select-container {
+    @apply p-2 !border-2 bg-white !border-[var(--color-seventh-gray)] !rounded-xl w-full disabled:bg-gray-100;
+  }
+  .ng-select-style ng-select.ng-touched.ng-invalid .ng-select-container {
+    @apply p-2 !border-2 bg-white !border-[var(--color-red)] !rounded-xl w-full disabled:bg-gray-100;
+  }
+  ng-dropdown-panel.form-control {
+    height: auto !important;
+  }
+
+  /*dialog*/
+  .header-dialog {
+    @apply p-3 border-b-2 border-gray-100;
+  }
+  .content-dialog {
+    @apply px-3 py-5 border-b-2 border-gray-100;
+  }
+  .footer-dialog {
+    @apply p-3 flex justify-end;
+  }
+
+  table {
+    @apply w-full text-center table;
+  }
+  table table {
+    @apply border-b-2 border-gray-100 text-center;
+  }
+  table td {
+    @apply text-[var(--color-third-gray)] p-4
+  }
+  table tr {
+    @apply odd:bg-white even:bg-[var(--color-gray)] hover:bg-[var(--color-second-blue)] duration-300;
+  }
+  table th {
+    @apply text-sm pb-4 text-[var(--color-third-gray)];
+  }
+}

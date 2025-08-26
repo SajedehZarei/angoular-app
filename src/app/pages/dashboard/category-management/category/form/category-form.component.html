@@ -1,0 +1,59 @@
+<section class="style-box">
+  <div class="title-box">
+    <h5>فرم ویرایش دسته بندی</h5>
+  </div>
+
+  <div class="content-box">
+    @if (form) {
+    <form class="flex flex-wrap">
+      <div class="w-full sm:w-1/3 px-2 mb-8">
+        <app-input
+          [textLabel]="'عنوان'"
+          [maxlength]="45"
+          [id]="'title'"
+          [controlName]="form.get('title')"
+        ></app-input>
+      </div>
+     <div class="w-full flex flex-wrap">
+       <div class="w-full sm:w-1/2 px-2 mb-8">
+        <upload-file
+        [label]="'تصویر'"
+        [validType]="['image/jpeg','image/png']"
+        [formControllName] = "form.get('file')"
+        ></upload-file>
+      </div>
+      <div class="w-full sm:w-1/2 px-2 mb-8">
+        <upload-file
+        [label]="'آیکن'"
+        [validType]="['image/svg+xml']"
+        [formControllName] = "form.get('icon')"
+        ></upload-file>
+      </div>
+     </div>
+    </form>
+    }
+
+    <div class="footer-box">
+      <div class="flex w-full gap-2 justify-between">
+        <app-button
+          [text]="'بازگشت به لیست'"
+          [typeBtn]="'style-btn style-btn-gray'"
+          [icon]="'fas fa-arrow-circle-right'"
+          (onClicked)="returnbBackPage()"
+        ></app-button>
+        <app-button
+          [text]="!this.findData ? 'ذخیره اطلاعات' : 'ویرایش اطلاعات'"
+          [typeBtn]="'style-btn style-btn-blue'"
+          [icon]="!this.findData ? 'far fa-save' : 'far fa-edit'"
+          (onClicked)="
+            !this.findData ? createItem() : updateItem(this.findData.id)
+          "
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</section>
+
+@if (showLoading) {
+<app-loading-page></app-loading-page>
+}

@@ -1,0 +1,73 @@
+<!-- <header class="columns-1 ">
+  <app-header-dashboard></app-header-dashboard>
+</header> -->
+
+<section class="style-box">
+  <div class="title-box">
+    <h5>معرفی کامپوننت ها</h5>
+  </div>
+
+  <div class="content-box">
+    @if (form) {
+    <form class="flex flex-wrap">
+      <div class="w-full sm:w-1/3 px-2 mb-8">
+        <app-input
+          [textLabel]="'input'"
+          [id]="'input'"
+          [controlName]="form.get('input')"
+        ></app-input>
+      </div>
+
+<div class="w-full sm:w-1/3 px-2 mb-8">
+        <app-date-picker
+          [textLabel]="'date-picker'"
+          [controlName]="form.get('datePicker')"
+        ></app-date-picker>
+      </div>
+
+      <div class="w-full sm:w-1/3  px-2 mb-4 ng-select-style">
+        <app-ng-select
+          [textLabel]="'select'"
+          [bindLabel]="'label'"
+          [bindValue]="'id'"
+          [itemsArray]="arrayValue"
+          [controlName]="form.get('select')"
+          [clearable]="false"
+        ></app-ng-select>
+      </div>
+
+      <div class="w-full px-2 mb-4 ng-select-style">
+        <app-textarea
+          [textLabel]="'textarea'"
+          [controlName]="form.get('textarea')"
+        ></app-textarea>
+      </div>
+
+      <div class="">
+        <app-switch
+          [text]="'switch'"
+          [controlName]="form.get('switch')"
+        ></app-switch>
+      </div>
+
+ <div class="w-full mt-5">
+        <app-checkbox
+          [textLabel]="'checkBox'"
+          [controlName]="form.get('checkBox')"
+        ></app-checkbox>
+      </div>
+
+      <div class="flex w-full justify-end pl-3 mt-24">
+        <app-button
+          [text]="'ذخیره تغییرات'"
+          [typeBtn]="'style-btn style-btn-blue'"
+          (onClicked)="clickBtn()"
+        ></app-button>
+      </div>
+    </form>
+    }
+  </div>
+</section>
+@if (showLoading) {
+<app-loading-page></app-loading-page>
+}

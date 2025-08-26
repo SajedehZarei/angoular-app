@@ -1,0 +1,100 @@
+<section class="style-box">
+  <div class="title-box">
+    <h5> {{findData ? 'فرم ویرایش' : 'فرم ایجاد'}} </h5>
+    <app-button
+      class="mr-auto"
+      [text]="'دسته بندی جدید'"
+      [icon]="'fas fa-plus-square'"
+      [typeBtn]="'style-btn style-btn-blue'"
+      (onClicked)="showForm()"
+    ></app-button>
+  </div>
+
+  <div class="content-box">
+    <div class="overflow-x-auto">
+      @if(items && items.length > 0){
+      <table>
+        <thead>
+          <th>ردیف</th>
+          <th>عنوان</th>
+          <th>تصویر</th>
+          <th>آیکون</th>
+          <th>عملیات</th>
+        </thead>
+        <tbody>
+          @for(item of items;track $index; let index = $index){
+          <tr>
+            <td>{{ index + 1 }}</td>
+
+            <td>{{ item.title }}</td>
+            <td>
+              <check-img
+              [url]="item.fileUrl"
+              [customClass]="'mx-auto'"
+              ></check-img>
+              <!-- <img
+              #imageDevice
+                [src]=""
+                width="50"
+                class="m-auto"
+                (error)="onError($event)"
+              /> -->
+            </td>
+            <td>
+              <check-img
+              [url]="item.iconUrl"
+              [type]="'icon'"
+              [customClass]="'mx-auto'"
+              ></check-img>
+              <!-- <img
+                [src]="item.iconUrl"
+                width="50"
+                class="m-auto"
+              /> -->
+            </td>
+            <td class="flex justify-center">
+              <app-button
+                class="style-btn-icon"
+                [customClass]="
+                  ' hover:text-[var(--color-blue)] text-[var(--color-orange)]'
+                "
+                [icon]="'fas fa-edit'"
+                [title]="'ویرایش'"
+                (click)="showForm(item.id)"
+              ></app-button>
+              <app-button
+                class="style-btn-icon"
+                [customClass]="
+                  'hover:text-[var(--color-blue)] text-[var(--color-red)]'
+                "
+                [icon]="'fas far fa-trash-alt'"
+                [title]="'حذف'"
+                (click)="deleteItem(item.id)"
+              ></app-button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      }@else{
+      <p class="text-center">اطلاعاتی جهت نمایش یافت نشد.</p>
+      }
+    </div>
+  </div>
+
+  @if (items && totalItem > perPage) {
+  <div class="footer-box">
+    <pagination
+      class="w-full"
+      [totalItem]="totalItem"
+      [page]="page"
+      [perPage]="perPage"
+      (changePage)="changePage($event)"
+    ></pagination>
+  </div>
+  }
+</section>
+
+@if(showLoading){
+<app-loading-page></app-loading-page>
+}

@@ -1,0 +1,55 @@
+  @if(textLabel != ''){
+  <app-label
+    [textLabel]="textLabel"
+    [customClassLabel]="classCustomLabel"
+    [isRequired]="controlName.hasError('required') ? true : false"
+  >
+  </app-label>
+  }
+<div class="relative">
+  <ng-select
+  class="ng-select-style "
+  [placeholder]="placeholder"
+  [items]="itemsArray ? itemsArray : (itemsValue$ | async)"
+  [bindLabel]="bindLabel"
+  [bindValue]="bindValue"
+  [formControl]="controlName"
+  [multiple]="multiple"
+  [markFirst]="markFirst"
+  [notFoundText]="notFoundText"
+  [loading]="hasLoding"
+  [loadingText]="loadingText"
+  [maxSelectedItems]="maxSelectedItems"
+  [searchFn]="searchFn"
+  [clearable]="clearable"
+  [closeOnSelect]="closeOnSelect"
+  [hideSelected]="hideSelected"
+  [readonly]="readonly"
+  [clearAllText]="clearAllText"
+  [selectOnTab]="selectOnTab"
+  [openOnEnter]="openOnEnter"
+  [virtualScroll]="virtualScroll"
+  [appendTo]="appendTo"
+  [typeToSearchText]="typeToSearchText"
+  [typeahead]="typeahead$"
+  [minTermLength]="minTermLength"
+  (change)="onChangeValue($event)"
+  (clear)="onClearValue($event)"
+  [ngClass]="[
+    hasValidation && controlName.touched
+      ? (controlName.value && controlName.disabled) || controlName.valid
+        ? ''
+        : 'border-red-600'
+      : '',
+    customClass
+  ]"
+>
+</ng-select>
+
+@if (hasValidation && controlName.value) {
+<div class="relative">
+  <input-validation-list [controlName]="controlName"></input-validation-list>
+</div>
+}
+</div>
+

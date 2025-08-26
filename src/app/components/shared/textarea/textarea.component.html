@@ -1,0 +1,35 @@
+<div class="relative">
+  @if(textLabel != ''){
+  <app-label
+    [textLabel]="textLabel"
+    [customClassLabel]="classCustomLabel"
+    [isRequired]="controlName.hasError('required') ? true : false"
+  >
+  </app-label>
+  }
+
+  <textarea
+    [placeholder]="placeholder"
+    class="input-style"
+    [attr.rows]="rows"
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+    [disabled]="disable"
+    [readOnly]="readOnly"
+    [formControl]="controlName"
+    [ngClass]="[
+      hasValidation && controlName.touched
+        ? (controlName.value && controlName.disabled) || controlName.valid
+          ? ''
+          : 'border-red-600'
+        : '',
+      customClass
+    ]"
+  ></textarea>
+
+  @if (hasValidation && controlName.value) {
+  <div class="relative">
+    <input-validation-list [controlName]="controlName"></input-validation-list>
+  </div>
+  }
+</div>

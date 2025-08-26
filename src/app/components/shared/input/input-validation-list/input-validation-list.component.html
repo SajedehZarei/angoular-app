@@ -1,0 +1,11 @@
+@if(controlName.errors && (hasTouched || controlName?.touched)){
+<span class="absolute left-1">
+  @for(error of listErrors;track $index){
+  <ul class="pl-0 list-none">
+    <li class="text-sm text-red-600">
+      <small>{{ error.message }}</small>
+    </li>
+  </ul>
+  }
+</span>
+}

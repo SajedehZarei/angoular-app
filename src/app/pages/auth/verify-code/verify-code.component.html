@@ -1,0 +1,89 @@
+<section
+  class="flex md:flex-row justify-center flex-col-reverse items-center md:h-screen bg-[rgba(243,246,248,1)] relative"
+>
+  <span
+    class="absolute 2xl:right-28 right-14 top-10 w-[350px] xl:block hidden"
+    #lottieContainer2
+  ></span>
+  <span
+    class="absolute 2xl:right-28 right-16 bottom-10 w-[450px] xl:block hidden"
+    #lottieContainer
+  ></span>
+  <span
+    class="absolute left-10 top-0 bottom-0 w-[350px] xl:block hidden"
+    #lottieContainer3
+  ></span>
+
+  <div class="flex justify-center relative w-full h-screen">
+    <div
+      class="md:w-2/3 bg-[rgba(72,73,147,0.88)] flex flex-col justify-center items-center self-center pb-16 relative rounded-2xl"
+    >
+      <div class="absolute inset-0 backdrop-blur-sm rounded-2xl"></div>
+      <div class="z-10 flex flex-col justify-center mt-12">
+        <h1 class="text-white mb-10 text-2xl self-center">
+          تایید شماره موبایل
+          <span class="mr-2 hand-wave"
+            ><i class="fas fa-mobile-alt text-white"></i
+          ></span>
+        </h1>
+
+        <p class="mb-10 text-white font-bold text-center">
+          لطفا کد ارسال شده به شماره موبایل
+          <span dir="ltr">{{ phoneNumber | phoneMask }}</span> را وارد کنید.
+        </p>
+        <div class="w-auto lg:w-1/2 space-y-4 md:space-y-6 self-center">
+          <ng-otp-input
+            class="flex justify-center w-full"
+            (keyup)="enterClicked($event)"
+            [formCtrl]="form.get('codeVerify')"
+            [dir]="'ltr'"
+            [config]="{
+              length: 5,
+              inputClass: 'each_input',
+              allowNumbersOnly: true
+            }"
+          ></ng-otp-input>
+
+          <div class="text-center">
+            <button
+              (click)="resendVerifyCode()"
+              class="text-white mb-10 cursor-pointer"
+              [disabled]="resendDisabled"
+            >
+              {{ resendText }}
+            </button>
+          </div>
+
+          <div class="flex justify-center w-full pb-5">
+            <app-button
+              [typeBtn]="'style-btn style-btn-black'"
+              [text]="'تایید'"
+              [customClass]="'mt-5 px-16 text-center'"
+              (onClicked)="submitCode()"
+            ></app-button>
+            <app-button
+              class="mr-3"
+              [typeBtn]="'style-btn style-btn-gray'"
+              [text]="'انصراف'"
+              [customClass]="'mt-5 px-14 text-center'"
+              (onClicked)="returnLoginForm()"
+            ></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative">
+    <img
+      class="fixed md:left-10 md:bottom-10 left-2 bottom-2 md:w-auto"
+      src="/images/auth-page/Iot-logo.svg"
+      alt="image"
+    />
+  </div>
+</section>
+
+@if(showLoading){
+<app-loading-page ></app-loading-page>
+}
+

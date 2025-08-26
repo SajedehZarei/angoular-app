@@ -1,0 +1,45 @@
+<div class="relative">
+  @if(textLabel != ''){
+  <app-label
+    [textLabel]="textLabel"
+    [customClassLabel]="classCustomLabel"
+    [isRequired]="controlName.hasError('required') ? true : false"
+  >
+  </app-label>
+  }
+  <input
+    #inputForm
+    [attr.type]="typeValue"
+    [placeholder]="placeholder"
+    [attr.maxlength]="maxlength"
+    [attr.minlength]="minlength"
+    [readOnly]="readOnly"
+    class="input-style"
+    [formControl]="controlName"
+    (keyup)="onkeyUpInput($event)"
+    [ngClass]="[
+      hasValidation && controlName.touched
+        ? (controlName.value && controlName.disabled) || controlName.valid
+          ? ''
+          : 'border-red-600'
+        : '',
+      customClass
+    ]"
+  />
+  @if(typeValue == 'password' && !showPassword){
+  <i
+    class="fa-solid fa-eye absolute text-[var(--color-third-gray)] left-3 top-[2.8rem] cursor-pointer"
+    (click)="showPass()"
+  ></i>
+  } @else if (typeValue == 'password' && showPassword) {
+  <i
+    class="fa-solid fa-eye-slash text-[var(--color-third-gray)] absolute left-3 top-[2.8rem] cursor-pointer"
+    (click)="showPass()"
+  ></i>
+  } 
+</div>
+@if (hasValidation && controlName.value) {
+  <div class="relative">
+    <input-validation-list [controlName]="controlName"></input-validation-list>
+  </div>
+  }

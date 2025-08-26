@@ -1,0 +1,74 @@
+<div class="w-full my-5 lg:flex">
+  <app-label
+    [textLabel]="label"
+    class="lg:ml-20 self-center lg:w-auto w-full !text-gray-300"
+    [customClassLabel]="'lg:mb-0 text-gray-500'"
+  ></app-label>
+  <div class="lg:flex-1 lg:mr-2 block ng-select-style">
+    <div
+      class="border-dashed cursor-pointer border-2 border-gray-200 p-2 text-center"
+      id="drop-area"
+      (click)="fileInput.click()"
+      (dragover)="onDragOver($event)"
+      (dragenter)="onDragEnter($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <span>
+        {{ fileName }}
+        <i class="las la-cloud-upload-alt text-2xl"></i>
+      </span>
+
+      <input
+        #fileInput
+        type="file"
+        style="display: none"
+        [multiple]="countUpload > 1"
+        (change)="handleFileInput($event)"
+      />
+      <!-- <input
+      type="file"
+      id="fileInput"
+      (change)="handleFileInput($event)"
+    /> -->
+    </div>
+  </div>
+  @if(attachments.length > 0){
+  <app-button
+    class="self-center mr-2"
+    [customClass]="'px-2 py-1 text-md'"
+    [title]="'حذف'"
+    [icon]="'fas fa-trash-alt'"
+    [typeBtn]="'style-btn-red'"
+    (click)="removeAttachment(0)"
+  ></app-button>
+  }
+</div>
+@if (hasPreview) {
+<div>
+  <div class="flex justify-center flex-wrap w-full">
+    @for (preview of previews; track $index;let i = $index) {
+    <div class="relative ml-3 w-[150px] h-[85px] group">
+      <!-- <img
+        [src]="preview"
+        alt="Preview"
+        class="ml-3"
+        width="50"
+        height="50"
+      /> -->
+      <div
+        [ngStyle]="{
+          'background-image': 'url(' + preview + ')'
+        }"
+        class="border-2 border-gray-200 rounded-md w-[150px] h-[85px] bg-cover bg-center"
+      ></div>
+      <span
+        (click)="removeAttachment(i)"
+        class="absolute cursor-pointer bottom-0 invisible opacity-0 w-full bg-gray-400 group-hover:opacity-85 group-hover:visible duration-75 text-center"
+        ><i class="far fa-trash-alt text-white"></i
+      ></span>
+    </div>
+    }
+  </div>
+</div>
+}

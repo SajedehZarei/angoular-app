@@ -1,0 +1,10 @@
+<button
+  [value]="value"
+  [type]="type"
+  [ngClass]="[typeBtn, customClass]"
+  [disabled]="isDisabled"
+  [id]="id"
+  (click)="onClick($event)"
+>
+  <i class="{{ icon }}"></i> {{ text }}
+</button>

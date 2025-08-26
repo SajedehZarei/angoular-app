@@ -1,0 +1,125 @@
+<section class="mb-5">
+  <div
+    class="flex rounded-lg p-4 bg-white shadow-[0px_20px_27px_rgba(0,0,0,0.05)]"
+  >
+    <img
+      #imageDevice
+      [src]="findData ? findData.pictureUrl : null"
+      (error)="onError($event)"
+      width="75"
+      class="rounded-md"
+    />
+    <div class="flex flex-col mr-4 items-center self-center">
+      <span
+        class="text-lg font-bold text-[var(--color-third-gray)] mb-2 self-center"
+      >
+        {{ variablesService.nameUser() }}
+      </span>
+    </div>
+  </div>
+</section>
+<div class="flex flex-wrap">
+  <div class="lg:w-8/12 w-full lg:pl-5 ">
+  <section class="style-box ">
+    <div class="title-box">
+      <h5>جزئیات پروفایل</h5>
+    </div>
+
+    <div class="content-box">
+      @if (form) {
+      <form class="flex flex-wrap">
+        <div class="w-full sm:w-1/2 px-2 mb-8">
+          <app-input
+            [textLabel]="'نام'"
+            [maxlength]="45"
+            [id]="'firstName'"
+            [controlName]="form.get('firstName')"
+          ></app-input>
+        </div>
+        <div class="w-full sm:w-1/2 px-2 mb-8">
+          <app-input
+            [textLabel]="'نام خانوادگی'"
+            [maxlength]="45"
+            [id]="'lastName'"
+            [controlName]="form.get('lastName')"
+          ></app-input>
+        </div>
+        <div class="w-full sm:w-1/2 px-2 mb-8">
+          <app-input
+            [textLabel]="'پست الکترونیکی'"
+            [id]="'email'"
+            [controlName]="form.get('email')"
+          ></app-input>
+        </div>
+        <div class="w-full sm:w-1/2 px-2 mb-8">
+          <app-input
+            [textLabel]="'شماره موبایل'"
+            [id]="'mobile'"
+            [readOnly]="true"
+            [controlName]="form.get('mobile')"
+          ></app-input>
+        </div>
+        <div class="flex w-full justify-end pl-3 mt-24">
+          <app-button
+            [text]="'ذخیره تغییرات'"
+            [typeBtn]="'style-btn style-btn-blue'"
+            (onClicked)="changeProfile()"
+          ></app-button>
+        </div>
+      </form>
+      }
+      <!-- @if (showLoading) {
+        <app-loading-page [typeLoading]="'box'"></app-loading-page>
+        } -->
+    </div>
+  </section></div>
+  <div class="lg:w-4/12 w-full">
+  <section class="style-box ">
+    <div class="title-box">
+      <h5>تغییر پسورد</h5>
+    </div>
+
+    <div class="content-box">
+      @if (form) {
+      <form class="flex flex-wrap">
+        <div class="w-full px-2 mb-4">
+          <app-input
+            [textLabel]="'رمز عبور فعلی '"
+            [typeValue]="'password'"
+            [id]="'currentPass'"
+            [controlName]="passForm.get('currentPassword')"
+          ></app-input>
+        </div>
+        <div class="w-full px-2 mb-4">
+          <app-input
+            [textLabel]="'رمز عبور جدید '"
+            [typeValue]="'password'"
+            [id]="'newPass'"
+            [controlName]="passForm.get('newPassword')"
+          ></app-input>
+        </div>
+        <div class="w-full px-2 mb-4">
+          <app-input
+            [textLabel]="'تکرار رمز عبور '"
+            [typeValue]="'password'"
+            [id]="'reapetPass'"
+            [controlName]="passForm.get('reapetPass')"
+          ></app-input>
+        </div>
+
+        <div class="flex w-full justify-end pl-3 mt-10">
+          <app-button
+            [text]="'ذخیره تغییرات'"
+            [typeBtn]="'style-btn style-btn-blue'"
+            (onClicked)="changePassword()"
+          ></app-button>
+        </div>
+      </form>
+      }
+    </div>
+  </section></div>
+</div>
+
+@if (showLoading) {
+<app-loading-page></app-loading-page>
+}

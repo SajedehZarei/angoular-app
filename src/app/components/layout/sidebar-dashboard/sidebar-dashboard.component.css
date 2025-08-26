@@ -1,0 +1,14 @@
+div.active{
+  background-color: #fff;
+  box-shadow: 0px 20px 27px rgba(0, 0, 0, 0.05) !important;
+}
+
+div.active span{
+  background-color: #1890ff !important;
+  box-shadow: unset !important;
+}
+
+div.active span i{
+  color: #fff !important;
+}
+

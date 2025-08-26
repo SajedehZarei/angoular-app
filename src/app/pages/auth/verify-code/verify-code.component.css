@@ -1,0 +1,30 @@
+::ng-deep .each_input{
+    border: none !important;
+    border-bottom:2px solid #eee !important;
+    border-radius:0 !important ;
+    width: 30px !important;
+    color:#ffffff !important;
+    font-size: 32px !important;
+    padding: 0;
+}
+
+.back-gradient{
+    background:  #ffffff;
+}
+
+.hand-wave {
+    display: inline-block;
+    animation: wave 2s ease-in-out 0.5s 3 ;
+    transform-origin: 70% 70%;
+  }
+  
+  @keyframes wave {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }

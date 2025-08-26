@@ -1,0 +1,23 @@
+
+
+ngneat-dialog{
+  border-radius: 20px;
+}
+
+ngneat-dialog  .ngneat-dialog-backdrop{
+
+}
+
+ngneat-dialog  .ngneat-dialog-backdrop .ngneat-dialog-content{
+
+}
+
+ngneat-dialog  .ngneat-dialog-backdrop .ngneat-dialog-content .ngneat-drag-marker{
+
+}
+
+ngneat-dialog  .ngneat-dialog-backdrop .ngneat-dialog-content .ngneat-close-dialog{
+  left: var(--dialog-close-btn-right, 10px);
+  top:8px;
+  right: unset;
+}

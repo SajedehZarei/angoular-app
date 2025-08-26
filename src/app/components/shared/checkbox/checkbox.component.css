@@ -1,0 +1,19 @@
+.form-checkbox{
+  display: inline-block;
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+ .form-check-input {
+  float: right;
+  min-width: 1.7rem;
+  margin-right: 0;
+  margin-left: 5px; border: 1px solid #7e7e81;
+  background-color: var(--checkbox-input-background-color);
+}
+
+.form-check-input label{font-weight: bold;color:#333;font-size: 12px;}
+
+.form-check-input:checked {
+  background-color: var(--primary-tickro) !important;
+}

@@ -1,0 +1,24 @@
+<div class="flex container-fluid flex-wrap px-5">
+  <aside class="xl:w-2/12 lg:w-3/12 md:w-5/12 w-full mx-auto  flex-col sidebar lg:flex hidden">
+    <app-sidebar-dashboard></app-sidebar-dashboard>
+  </aside>
+
+  <div
+    class="flex flex-col min-h-lvh xl:w-10/12 lg:w-9/12 md:mt-0 w-full mt-4 content md:pr-7"
+  >
+  <header class="columns-1">
+  <app-header-dashboard></app-header-dashboard>
+</header>
+    <section class="flex-1">
+      <app-content-dashboard></app-content-dashboard>
+    </section>
+    <footer class="columns-1  md:flex hidden w-full footer">
+      <app-footer-dashboard class="w-full"> </app-footer-dashboard>
+    </footer>
+
+  </div>
+
+</div>
+<footer class="columns-1 md:hidden  flex w-full mt-5 footer">
+  <app-footer-dashboard class="w-full"> </app-footer-dashboard>
+</footer>

@@ -1,0 +1,26 @@
+
+.form-switch{
+  display: inline-block;
+  position: relative;
+  label{
+    font-weight: bold;color:#333;font-size: 12px;
+  }
+
+  span{
+    position: absolute;
+    left: -5px;font-weight: bold;color:#333;font-size: 12px;
+  }
+
+  input{
+    position: relative;
+    right: 6px;
+    margin-left: 0;
+    border: 1px solid #7e7e81;
+
+  };
+
+  .form-check-input:checked {
+    background-color: var(--button-new-background-color);
+  }
+}
+

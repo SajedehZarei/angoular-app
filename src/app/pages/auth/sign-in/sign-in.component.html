@@ -1,0 +1,90 @@
+<section 
+  class="flex md:flex-row justify-center flex-col-reverse items-center md:h-screen bg-[rgba(243,246,248,1)] relative"
+>
+ <span class=" absolute 2xl:right-28 right-14 top-10 w-[350px] xl:block hidden" #lottieContainer2></span>
+ <span class=" absolute 2xl:right-28 right-16 bottom-10 w-[450px] xl:block hidden" #lottieContainer></span>
+ <span class=" absolute left-10 top-0 bottom-0 w-[350px] xl:block hidden" #lottieContainer3></span>
+
+<div  class="  flex justify-center relative  w-full h-screen">
+
+  <div
+    class="md:w-2/3 bg-[rgba(72,73,147,0.88)] flex flex-col justify-center items-center self-center pb-16 relative rounded-2xl"
+  >
+  <div class="absolute inset-0 backdrop-blur-sm rounded-2xl"></div>
+ 
+  <div class="   rounded-md flex justify-center z-10 w-[200px] mt-10" >
+    <img src="/images/auth-page/admin.svg">
+  </div>
+    <h2 class="text-five-gray text-3xl z-10 text-white mt-8 "> Managment Panel</h2>
+    <h6 class=" mt-5 mb-10 text-xl font-medium z-10 text-white">پنل مدیریت...</h6>
+      <div class="w-auto lg:w-1/3 z-10 space-y-4 md:space-y-6  px-2" >
+      <div>
+        <app-input
+          [textLabel]="'نام کاربری'"
+          [placeholder]="'نام کاربری یا شماره موبایل'"
+          [id]="'usernameOrPhoneNumber'"
+          [customClass]="
+            'block w-full p-3 bg-eight-gray border border-seventh-gray text-gray-900 sm:text-sm rounded-xl '
+          "
+          [controlName]="form.get('usernameOrPhoneNumber')"
+       [classCustomLabel]="'text-white inline-block'"
+          ></app-input>
+      </div>
+      <div>
+        <app-input
+          [textLabel]="'رمز عبور'"
+          [typeValue]="'password'"
+          [placeholder]="'حداقل 8 کاراکتر'"
+          [customClass]="
+            'block w-full p-3 bg-eight-gray border border-seventh-gray text-gray-900 sm:text-sm rounded-xl '
+          "
+          [id]="'password'"
+          (keyUpInput)="enterClicked($event)"
+          [controlName]="form.get('password')"
+        [classCustomLabel]="'text-white inline-block'"
+          ></app-input>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="">
+          <app-checkbox
+            class="flex items-start"
+            [id]="'remember'"
+            [textLabel]="'مرا به یاد داشته باش'"
+            [classCustomLabel]="'text-white inline-block'"
+            [controlName]="form.get('remember')"
+          ></app-checkbox>
+        </div>
+        <a
+          (click)="forgetPassword()"
+          class="text-base font-medium text-white inline-block mb-5 hover:underline cursor-pointer"
+          >فراموشی رمز عبور؟</a
+        >
+      </div>
+      <app-button
+       [typeBtn]="'style-btn style-btn-black'"
+        [text]="'ورود'"
+        [customClass]="'px-16'"
+        class="flex justify-center"
+        (onClicked)="clickLogin()"
+      >
+      </app-button>
+    </div>
+  </div>
+   
+  </div>
+<div
+    class="relative"
+  >
+    <img
+      class="fixed md:left-10 md:bottom-10 left-2 bottom-2 md:w-auto "
+      src="/images/auth-page/Iot-logo.svg"
+      alt="image"
+    />
+  </div>
+ 
+</section>
+
+@if(showLoading){
+<app-loading-page ></app-loading-page>
+}
+

@@ -1,0 +1,52 @@
+<section class="w-full flex flex-col sm:flex-row justify-between">
+
+  <div class="self-center text-sm md:w-auto md:mb-0 w-full mb-3 ml-8 justify-center flex text-[var(--color-third-gray)]">
+    نمایش
+    <span class="mx-1">{{ perPage * (page - 1) + 1 }}</span> تا
+    <span class="mx-1">{{ perPage * page }}</span> از
+    <span class="mx-1">{{ totalItem }}</span>
+  </div>
+
+  <div class="flex mr-auto">
+            <span
+              [routerLink]="[]"
+              [queryParams]="{ page: '1' }"
+              [routerLinkActive]="['bg-[var(--color-blue)]', 'text-white', '!border-[var(--color-blue)]']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="cursor-pointer text-sm flex ml-1 items-center  justify-center w-[36px] h-[36px] rounded-full border border-[var(--color-second-gray)]"
+              (click)="onClick(1)"
+            >
+              ابتدا
+            </span>
+
+    <div class="flex justify-between">
+      @for (indexPage of activePage; track $index) {
+ <span
+                [routerLink]="[]"
+                [queryParams]="{ page: indexPage }"
+                [routerLinkActive]="['bg-[var(--color-blue)]', 'text-white', '!border-[var(--color-blue)]']"
+                class="cursor-pointer flex mr-1 items-center  justify-center w-[36px] h-[36px] rounded-full border border-[var(--color-second-gray)]"
+                (click)="onClick(indexPage)"
+              >
+                {{ indexPage }}
+              </span>
+      }
+             
+    </div>
+    <span
+      [routerLink]="[]"
+      [queryParams]="{ page: countPage }"
+      [routerLinkActive]="['bg-[var(--color-blue)]', 'text-white', '!border-[var(--color-blue)]']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="cursor-pointer text-sm flex mr-2 items-center justify-center w-[36px] h-[36px] rounded-full border border-[var(--color-second-gray)]"
+      (click)="onClick(countPage)"
+    >
+              انتها
+            </span>
+
+  </div>
+
+
+</section>
+
+

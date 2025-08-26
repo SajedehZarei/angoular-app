@@ -1,0 +1,28 @@
+.event-none{
+  pointer-events: none;
+  background-color: #f0f5f2;
+}
+
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: calc(1px * -1);
+   border-top-left-radius: 5px; 
+   border-bottom-left-radius: 5px;
+}
+
+.date-picker-input {
+  border: none;
+  border-top-left-radius: 5px; 
+  border-bottom-left-radius: 5px;
+}
+
+.input-group-prepend{
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  z-index: 9;
+  height: 39px;
+  i{
+    border-radius: 6px;
+  }
+}

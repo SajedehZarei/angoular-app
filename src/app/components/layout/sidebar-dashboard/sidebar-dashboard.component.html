@@ -1,0 +1,130 @@
+<div class="p-5">
+  <div
+    class="text-center border-b-2 border-stone-200 pb-3 justify-center items-center h-[82px] lg:flex hidden"
+  >
+    <img
+      src="/images/layout-section/logo.png"
+      alt=""
+      width="150"
+      [routerLink]="['/dashboard']"
+    />
+  </div>
+
+  <div class="pt-5">
+    <ul class="flex flex-col w-full">
+      @for (menu of menus; track $index) { @if (menu.subMenus.length == 0) {
+      <li class="w-full">
+        <div
+          class="flex p-2 rounded-lg mb-2 w-full"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span
+            class="bg-white w-[40px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="text-xl  self-center justify-center"
+              [ngClass]="menu.icon"
+            ></i>
+          </span>
+
+          <a
+            [routerLink]="[menu.route]"
+            (click)="toggleSubMenu(menu)"
+            class="w-full duration-200 text-color-second self-center mr-3 text-[var(--color-third-gray)]"
+          >
+            {{ menu.title }}
+          </a>
+        </div>
+      </li>
+      }@else {
+
+      <li>
+        <div
+          class="flex p-2 rounded-lg mb-2"
+          [ngClass]="isSubmenuActive(menu) ? 'active' : ''"
+        >
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="text-xl text-color-second-light self-center justify-center"
+              [ngClass]="menu.icon"
+            ></i>
+          </span>
+
+          <a
+            
+            class="block cursor-pointer duration-200 text-color-second self-center mr-3 text-[var(--color-third-gray)]"
+            (click)="toggleSubMenu(menu)"
+          >
+            {{ menu.title }}
+          </a>
+
+          <i
+            class="fas text-sm mr-auto self-center"
+            [ngClass]="menu.isOpen ? 'fa-angle-down' : 'fa-angle-left'"
+          ></i>
+        </div>
+
+        @if (menu.isOpen) {
+        <ul
+          class="max-h-[300px] overflow-auto pr-5"
+        >
+          <li
+            *ngFor="let subMenu of menu.subMenus"
+            class=" duration-200 p-1 border-r-2 border-[#ddd] text-base flex w-full item-center"
+          >
+            <!-- <i
+              class="fa-solid fa-circle text-[#BEBEBE] text-[8px] self-center"
+              [routerLinkActive]="['text-[#FaFaFa]']"
+            ></i> -->
+            <a
+              [routerLinkActive]="['bg-[#FaFaFa]']"
+              [routerLink]="subMenu.route"
+              class="text-sm font-bold rounded-lg mr-2 py-3 px-3 grow-1 self-center text-[var(--color-third-gray)]"
+            >
+              {{ subMenu.title }}</a
+            >
+          </li>
+        </ul>
+
+        }
+      </li>
+
+      } }
+
+      <!-- <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+        <span
+          class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+        >
+          <i
+            class="las la-user-circle text-color-second-light self-center justify-center text-xl"
+          ></i>
+        </span>
+        <a
+          [routerLink]="['/dashboard/profile']"
+          class="block duration-200 text-color-second self-center mr-3"
+        >
+          پروفایل
+        </a>
+      </li>
+
+      <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+        <span
+          class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+        >
+          <i
+            class="fas fa-sign-out-alt text-color-second-light self-center justify-center text-base"
+          ></i>
+        </span>
+        <a
+          [routerLink]="['/logout']"
+          class="block duration-200 text-color-second self-center mr-3"
+        >
+          خروج
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>

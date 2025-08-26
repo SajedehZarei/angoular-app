@@ -1,0 +1,317 @@
+<div class="container-fluid md:flex hidden border-b-2 border-gray-200 mb-3">
+  <div class="flex flex-col py-3.5">
+    <span class="text-sm text-[var(--color-third-gray)]">
+      <i class="fas fa-home"></i> <span class="mx-3">/</span>
+
+      <!-- breadcrumb.component.html -->
+      <nav class="text-sm text-gray-600 my-2 inline-block">
+        @for (bc of breadcrumbs; track $index;let last = $last) {
+
+        <ng-container>
+          @if (!last && breadcrumbs.length > 1) {
+          <ng-container>
+            <!-- <a [routerLink]="bc.url" [queryParams]="bc.queryParams!" class="text-blue-600 hover:underline">{{ bc.label }}</a> -->
+            <span class="text-[var(--color-third-gray)]">{{ bc.label }}</span>
+            <span class="mx-1">›</span>
+          </ng-container>
+          } @if (last) {
+          <ng-container>
+            <span class="">{{ bc.label }}</span>
+          </ng-container>
+          }
+        </ng-container>
+        }
+      </nav>
+
+      <!-- <span>{{ titleHeader }}</span> -->
+    </span>
+    <h1 class="font-bold text-lg mt-2 text-[var(--color-third-gray)]">{{ titleHeader }}</h1>
+  </div>
+  <div class="flex mr-auto" dir="ltr">
+    <span class="self-center cursor-pointer" (click)="logOut()"
+      ><i class="fas fa-sign-out-alt text-[var(--color-third-gray)]"></i
+    ></span>
+    <span
+      class="self-center mx-5 cursor-pointer"
+      [routerLink]="['/dashboard/profile']"
+    >
+      <span
+        class="bg-[var(--color-nine-gray)] text-sm rounded-lg py-1 px-3 text-[var(--color-third-gray)] hover:text-white hover:bg-[var(--color-blue)] duration-200"
+      >
+        {{
+          variablesService.nameUser()
+        }}
+      </span>
+    </span>
+  </div>
+</div>
+
+<!-- mobile header -->
+
+<div class="flex flex-col container-fluid md:hidden">
+  <div class="flex border-b-2 border-stone-100 pb-3">
+    <div class="text-center flex justify-center items-center">
+      <img
+        src="/images/layout-section/logo.png"
+        alt=""
+        width="120"
+        [routerLink]="['/dashboard']"
+      />
+    </div>
+
+    <div class="flex mr-auto" dir="ltr">
+      <span class="self-center" (click)="openMenu()"
+        ><i class="fas fa-bars text-lg"></i
+      ></span>
+      <!-- <span class="self-center mx-5">
+        <span *ngIf="infoUser.firstName">{{infoUser.firstName}} {{infoUser.lastName}}</span>
+        <span *ngIf="!infoUser.firstName">{{infoUser.phoneNumber}}</span>
+      </span>
+      <img
+        src="../../../../../assets/images/user-profile.svg"
+        width="50"
+        height="50"
+        class="rounded-full"
+      /> -->
+    </div>
+  </div>
+
+  <div class="flex py-5">
+    <span class="text-sm">
+      <i class="fas fa-home" [routerLink]="['/dashboard']"></i>
+      <span class="mx-3">/</span> <span>{{ titleHeader }}</span></span
+    >
+    @if (showIconBack) {
+    <i class="fas fa-arrow-left mr-auto" [routerLink]="['/dashboard']"></i>
+    }
+  </div>
+</div>
+
+<!-- share menu -->
+@if (backMenu) {
+<div
+  class="flex flex-row-reverse fixed left-0 top-0 w-full h-screen z-50"
+  (click)="closeMenu()"
+>
+  <div class="absolute inset-0 backdrop-blur-sm z-10"></div>
+  <div
+  (click)="$event.stopPropagation()"
+    [ngClass]="!showMenu ? '-left-96' : 'left-0'"
+    class="flex z-20 rounded-s-md pr-4 flex-col bg-[#fafafa] relative top-0 w-[300px] h-screen duration-200"
+  >
+    <div class="text-center flex items-center py-4">
+      <img src="/images/layout-section/logo.png" alt="" width="120" />
+      <span
+        class="mr-auto p-1 px-2 ml-2 text-sm rounded-md bg-[var(--color-blue)] text-white"
+        (click)="logOut()"
+        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+      ></span>
+    </div>
+    <div class="flex justify-end w-full border-t border-b py-3" dir="ltr">
+      <span class="self-center mx-5">
+        @if (infoUser.firstName) {
+        <span>{{ infoUser.firstName }} {{ infoUser.lastName }}</span>
+        }@else{
+        <span>{{ infoUser.phoneNumber }}</span>
+        }
+      </span>
+      <img
+        src="/images/layout-section/user-profile.svg"
+        width="40"
+        height="40"
+        class="rounded-full"
+      />
+    </div>
+
+    <div class="max-h-[calc(100vh_-_220px)] overflow-y-scroll">
+      <app-sidebar-dashboard></app-sidebar-dashboard>
+      <!-- <ul class="flex flex-col w-full">
+        <li
+          class="flex p-2 rounded-lg mb-2"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="las la-columns text-xl text-color-second-light self-center justify-center"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            داشبورد
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="las la-clipboard-check text-color-second-light self-center justify-center text-xl"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/active-devices']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            دستگاه های فعال
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="las la-exclamation-circle text-color-second-light self-center justify-center text-xl"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/error-devices']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            دستگاه های دارای خطا
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="fas fa-bug text-color-second-light self-center justify-center text-md"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/error-list-device']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            تاریخچه خطای دستگاه
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="fas fa-file-signature text-color-second-light self-center justify-center text-md"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/error-list-model']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            خطاها بر اساس مدل
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="far fa-question-circle text-color-second-light self-center justify-center text-md"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/provinces-error']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            خطاها بر اساس استان
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="far fa-chart-bar rotate-[-90deg] text-color-second-light self-center justify-center text-md"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/installation-report']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            گزارش نصب ماهانه
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="fas fa-industry text-color-second-light self-center justify-center text-md"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/production-report']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            گزارش تولیدات
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="las la-desktop text-color-second-light self-center justify-center text-xl"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/monitoring']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            مانیتورینگ
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="las la-user-circle text-color-second-light self-center justify-center text-xl"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/dashboard/profile']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            پروفایل
+          </a>
+        </li>
+
+        <li class="flex p-2 rounded-lg mb-2" [routerLinkActive]="['active']">
+          <span
+            class="bg-white w-[35px] h-[35px] rounded-lg shadow-primary flex justify-center"
+          >
+            <i
+              class="fas fa-sign-out-alt text-color-second-light self-center justify-center text-base"
+            ></i>
+          </span>
+          <a
+            [routerLink]="['/logout']"
+            class="block duration-200 text-color-second self-center mr-3"
+          >
+            خروج
+          </a>
+        </li>
+      </ul> -->
+    </div>
+
+    <span class="mt-auto flex w-full justify-center p-3"
+      >© 2024, Device Monitor</span
+    >
+  </div>
+  <!-- <span class="border-2 bg-white self-start border-white  px-2 text-2xl text-gray-500 cursor-pointer " *ngIf="showMenu" (click)="closeMenu()"><i class="fas fa-times transition-all hover:rotate-180 inline-block"></i></span> -->
+</div>
+}

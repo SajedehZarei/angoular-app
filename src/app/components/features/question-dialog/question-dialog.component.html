@@ -1,0 +1,30 @@
+<section>
+  <div class="header-dialog text-[var(--color-third-gray)]">
+    <h5>
+      <i class="las la-info-circle text-2xl align-middle"></i>
+      {{ ref.data.title }}
+    </h5>
+  </div>
+  <div class="content-dialog text-[var(--color-third-gray)]">
+    <p>{{ ref.data.question }}</p>
+  </div>
+  <div class="footer-dialog">
+    <app-button
+      dialogClose
+      [typeBtn]="'style-btn style-btn-blue'"
+      [text]="'تایید'"
+      [customClass]="'px-7'"
+      (onClicked)="onYesClick($event)"
+    ></app-button>
+    <app-button
+      (onClicked)="closeDialog()"
+      class="mr-3 self-center"
+      [typeBtn]="'style-btn style-btn-gray'"
+      [text]="'انصراف'"
+    ></app-button>
+  </div>
+</section>
+
+@if(showLoading){
+<app-loading-box></app-loading-box>
+}

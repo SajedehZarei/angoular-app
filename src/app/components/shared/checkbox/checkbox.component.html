@@ -1,0 +1,52 @@
+<div class="form-check form-checkbox d-flex">
+  @if(!controlName){
+  <input
+    class="w-4 h-4 text-blue-600 border-ninth-gray rounded focus:ring-red-500 focus:ring-2"
+    type="checkbox"
+    [attr.value]="value"
+    [attr.name]="name"
+    [attr.disabled]="isDisabled ? true : null"
+    [checked]="isChecked"
+    [attr.id]="id"
+    (change)="onChangeSelected($event)"
+  />
+  }@else{
+  <input
+    class="w-4 h-4 text-blue-600 border-ninth-gray rounded focus:ring-white focus:ring-2"
+    type="checkbox"
+    [attr.name]="name"
+    [attr.disabled]="isDisabled ? true : null"
+    [attr.id]="id"
+    [formControl]="controlName"
+    (change)="onChangeSelected($event)"
+  />
+  }
+
+  <label [for]="id" class="mr-2">
+    <app-label
+      [textLabel]="textLabel"
+      [forLabel]="id"
+      [customClassLabel]="classCustomLabel"
+    ></app-label>
+  </label>
+</div>
+
+<!-- <div class="flex items-center h-5">
+  <input
+    [attr.name]="name"
+    [attr.disabled]="isDisabled ? true : null"
+    [attr.id]="id"
+    aria-describedby="id"
+    type="checkbox"
+    (change)="onChangeSelected($event)"
+    class="w-4 h-4 text-blue-600 border-ninth-gray rounded focus:ring-red-500 focus:ring-2"
+  />
+</div>
+<div class="mr-3 text-sm">
+  <app-label
+    [textLabel]="textLabel"
+    [forLabel]="id"
+    [customClassLabel]="'text-black inline-block'"
+  >
+  </app-label>
+</div> -->

@@ -1,0 +1,45 @@
+<section>
+  <div class="header-dialog">
+    <h5>
+      <i class="las la-info-circle text-2xl align-middle"></i>
+      تغییر رمز عبور
+    </h5>
+  </div>
+  <div class="content-dialog">
+    <p class="mb-5">
+      برای تغییر رمز عبور کد تاییدی به شماره موبایل شما ارسال میگردد
+    </p>
+    <div class="w-full px-2 mb-5 lg:flex">
+      <app-label
+        [isRequired]="true"
+        [textLabel]="'شماره موبایل'"
+        class="ml-5 self-center lg:w-auto w-full"
+        [customClassLabel]="'lg:mb-0'"
+      ></app-label>
+      <app-input
+        [id]="'phoneNumber'"
+        [maxlength]="11"
+        class="lg:flex-1 block"
+        [controlName]="form.get('phoneNumber')"
+      ></app-input>
+    </div>
+  </div>
+  <div class="footer-dialog">
+    <app-button
+      [typeBtn]="'style-btn style-btn-blue'"
+      [text]="'تایید'"
+      [customClass]="'px-7'"
+      (onClicked)="sendCode()"
+    ></app-button>
+    <app-button
+      dialogClose
+      class="mr-3"
+      [typeBtn]="'style-btn style-btn-gray'"
+      [text]="'انصراف'"
+    ></app-button>
+  </div>
+</section>
+
+@if (showLoading) {
+<app-loading-box></app-loading-box>
+}

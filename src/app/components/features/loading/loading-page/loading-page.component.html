@@ -1,0 +1,12 @@
+<!-- <div class="back-loader">
+  <div class="loader">
+  <div class="loader-circle"></div>
+  <span class="loader-text">لطفا منتظر بمانید...</span>
+</div>
+</div> -->
+
+<div class="back-loader" [ngClass]="typeLoading == 'screen' ? 'back-loader-screen' : 'back-loader-box' ">
+<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+  <h4 class="text-center loader-text">لطفا منتظر بمانید...</h4>
+</div>

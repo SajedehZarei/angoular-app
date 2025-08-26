@@ -1,0 +1,4 @@
+::ng-deep .ngneat-dialog-content {
+    width: 20% !important;
+    overflow: auto;
+}
