@@ -4,7 +4,7 @@ import { DashboardGuard } from '../tools/guards/dashboard.guard';
 export const dashboardRoutes: Routes = [
   {
     path: 'dashboard',
-    canActivate: [DashboardGuard],
+    // canActivate: [DashboardGuard],
     loadComponent: () =>
       import('../components/layout/layout-dashboard.component').then(
         (m) => m.LayoutDashboardComponent

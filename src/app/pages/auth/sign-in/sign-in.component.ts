@@ -97,6 +97,7 @@ export class SignInComponent
   }
 
   clickLogin() {
+    console.log("asdasd")
     this._router.navigate(['sign-in/verify-code-login']);
     /*this.callApiAndSubscribe(
       this.baseApiService.PostApi(

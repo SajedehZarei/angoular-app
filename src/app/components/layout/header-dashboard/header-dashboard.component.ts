@@ -47,10 +47,10 @@ export class HeaderDashboardComponent extends ShareMethodsBaseComponent implemen
     this._router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.showBreadcrumbs();
+        // this.showBreadcrumbs();
       });
 
-    this.showBreadcrumbs();
+    // this.showBreadcrumbs();
 
     // switch (true) {
     //   case this._router.url === '/dashboard':

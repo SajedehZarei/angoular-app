@@ -4,11 +4,11 @@ import { AuthGuard } from '../tools/guards/auth.guard';
 export const authRoutes: Routes = [
   {
     path: 'sign-in',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadComponent: () =>
           import('../pages/auth/sign-in/sign-in.component').then(
             (m) => m.SignInComponent
@@ -17,7 +17,7 @@ export const authRoutes: Routes = [
 
       {
         path: 'verify-code-login',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         data: { typeCode: 'login' },
         loadComponent: () =>
           import('../pages/auth/verify-code/verify-code.component').then(
@@ -27,7 +27,7 @@ export const authRoutes: Routes = [
 
       {
         path: 'verify-code-change-password',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         data: { typeCode: 'changePassword' },
         loadComponent: () =>
           import('../pages/auth/verify-code/verify-code.component').then(
@@ -37,7 +37,7 @@ export const authRoutes: Routes = [
 
       {
         path: 'change-password',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadComponent: () =>
           import(
             '../pages/auth/change-password/change-password.component'

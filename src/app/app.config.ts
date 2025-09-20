@@ -22,11 +22,11 @@ export const appConfig: ApplicationConfig = {
    { provide: APP_ENV, useValue: environment },
     provideToastr({ preventDuplicates: true }),
     Extensions,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true,
+    // },
     provideAnimations(),
     provideHttpClient(),
     importProvidersFrom(HttpClientModule)
