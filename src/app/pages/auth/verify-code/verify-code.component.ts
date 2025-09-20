@@ -100,7 +100,7 @@ export class VerifyCodeComponent
     this.resendCode();
     this.initForm();
     this.typeVerifyCode = this.activatedRoute.snapshot.data;
-    if (this._localStorage.getUser()) {
+   /* if (this._localStorage.getUser()) {
       this.infoUser = this._localStorage.getUser()!;
       this.phoneNumber = this.infoUser.phoneNumber;
     } else {
@@ -113,7 +113,7 @@ export class VerifyCodeComponent
       // this.username = this.infoUser.username;
     } else if (this.typeVerifyCode.typeCode == 'changePassword') {
       // this.sendCode()
-    }
+    }*/
   }
 
   protected initForm(): void {
@@ -182,7 +182,8 @@ export class VerifyCodeComponent
   }
 
   submitCode() {
-    if (this.typeVerifyCode.typeCode == 'login') {
+    this._router.navigate(['dashboard/home']);
+    /*if (this.typeVerifyCode.typeCode == 'login') {
       const body = {
         code: this.form.get('codeVerify').value,
         username: this.infoUser.username,
@@ -220,7 +221,7 @@ export class VerifyCodeComponent
           this.saveData();
         },
       });
-    }
+    }*/
   }
   returnLoginForm() {
     this._router.navigate(['sign-in']);

@@ -97,15 +97,15 @@ export class SignInComponent
   }
 
   clickLogin() {
-    // this._router.navigate(['sign-in/verify-code-login']);
-    this.callApiAndSubscribe(
+    this._router.navigate(['sign-in/verify-code-login']);
+    /*this.callApiAndSubscribe(
       this.baseApiService.PostApi(
         '/Gateway/v1/api/Authentication/TwoFactorLogin',
         this.form.value
       ),
       'create',
       'کد تایید به شماره همراه شما ارسال شد...'
-    );
+    );*/
   }
 
   forgetPassword() {
@@ -117,7 +117,8 @@ export class SignInComponent
   }
 
   protected actionAfterCreate(value?: any): void {
-    const infoUser = {
+    this._router.navigate(['sign-in/verify-code-login']);
+    /*const infoUser = {
       phoneNumber: this.data.phoneNumber,
       username: this.data.username,
       email: this.data.email,
@@ -128,8 +129,7 @@ export class SignInComponent
 
     this._localStorage.saveUser(infoUser);
     this._localStorage.savePassword(this.form.get('password').value);
-    this.variablesService.nameUser.set(this.data.firstName + ' ' + this.data.lastName)
-    this._router.navigate(['sign-in/verify-code-login']);
+    this.variablesService.nameUser.set(this.data.firstName + ' ' + this.data.lastName)*/
   }
 
   public enterClicked(event): void {
