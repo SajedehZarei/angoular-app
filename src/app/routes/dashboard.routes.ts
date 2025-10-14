@@ -10,9 +10,14 @@ export const dashboardRoutes: Routes = [
         (m) => m.LayoutDashboardComponent
       ),
     children: [
+       {
+        path: '',
+        redirectTo: 'category-management/category',
+        pathMatch: 'full'
+      },
       {
         path: 'home',
-        data: { breadcrumb: 'داشبورد' },
+        data: { breadcrumb: 'لیست کارمندان' },
         loadComponent: () =>
           import('../pages/dashboard/home/home.component').then(
             (m) => m.HomeComponent
@@ -20,7 +25,7 @@ export const dashboardRoutes: Routes = [
       },
 
       {
-        path: 'management-category',
+        path: 'category-management',
         data: { breadcrumb: 'مدیریت دسته بندی' },
         children: [
           {
@@ -41,7 +46,7 @@ export const dashboardRoutes: Routes = [
               },
               {
                 path: 'category-form/:id',
-                data: { breadcrumb: '  فرم ویرایش دسته بندی' },
+                data: { breadcrumb: '  فرم افزودن کارمند' },
                 loadComponent: () =>
                   import('../pages/dashboard/category-management/category/form/category-form.component').then(
                     (m) => m.CategoryFormComponent
@@ -77,11 +82,12 @@ export const dashboardRoutes: Routes = [
           ),
       },
 
-      {
-    path: '**',
-    redirectTo: 'home',
+      //{
+   // path: '**',
+    //redirectTo: 'category-management/category',
+    //pathMatch: 'full'
     // redirectTo: '',
-  },
+  //},
     ],
     
   },

@@ -1,6 +1,6 @@
 <section class="style-box">
   <div class="title-box">
-    <h5>فرم ویرایش دسته بندی</h5>
+    <h5>فرم افزودن کارمند جدید</h5>
   </div>
 
   <div class="content-box">
@@ -8,25 +8,44 @@
     <form class="flex flex-wrap">
       <div class="w-full sm:w-1/3 px-2 mb-8">
         <app-input
-          [textLabel]="'عنوان'"
+          [textLabel]="'نام و نام خانوادگی'"
           [maxlength]="45"
-          [id]="'title'"
-          [controlName]="form.get('title')"
+          [id]="'fullName'"
+          [controlName]="form.get('fullName')"
         ></app-input>
       </div>
      <div class="w-full flex flex-wrap">
        <div class="w-full sm:w-1/2 px-2 mb-8">
-        <upload-file
-        [label]="'تصویر'"
-        [validType]="['image/jpeg','image/png']"
-        [formControllName] = "form.get('file')"
-        ></upload-file>
+         <app-input
+            [textLabel]="'کد پرسنلی'"
+            [maxlength]="10"
+            [id]="'personnelCode'"
+            [controlName]="form.get('personnelCode')"
+          ></app-input>
       </div>
+
+       <div class="w-full sm:w-1/2 px-2 mb-8">
+          <app-input
+            [textLabel]="'ایمیل'"
+            [id]="'email'"
+            [controlName]="form.get('email')"
+          ></app-input>
+        </div>
+
+          <div class="w-full sm:w-1/2 px-2 mb-8">
+          <app-input
+            [textLabel]="'شماره تماس'"
+            [maxlength]="11"
+            [id]="'phoneNumber'"
+            [controlName]="form.get('phoneNumber')"
+          ></app-input>
+        </div>
+
       <div class="w-full sm:w-1/2 px-2 mb-8">
         <upload-file
-        [label]="'آیکن'"
-        [validType]="['image/svg+xml']"
-        [formControllName] = "form.get('icon')"
+        [label]="'عکس کارمند'"
+        [validType]="['image/jpeg','image/png']"
+        [formControllName] = "form.get('profileImage')"
         ></upload-file>
       </div>
      </div>

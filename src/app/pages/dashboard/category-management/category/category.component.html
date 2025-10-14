@@ -1,9 +1,9 @@
 <section class="style-box">
   <div class="title-box">
-    <h5> {{findData ? 'فرم ویرایش' : 'فرم ایجاد'}} </h5>
+    <h5> {{findData ? 'فرم ویرایش' : 'لیست کارمندان  '}} </h5>
     <app-button
       class="mr-auto"
-      [text]="'دسته بندی جدید'"
+      [text]="'افزودن کارمند جدید'"
       [icon]="'fas fa-plus-square'"
       [typeBtn]="'style-btn style-btn-blue'"
       (onClicked)="showForm()"
@@ -12,13 +12,13 @@
 
   <div class="content-box">
     <div class="overflow-x-auto">
-      @if(items && items.length > 0){
+     <!--@if(items && items.length > 0){-->
       <table>
         <thead>
           <th>ردیف</th>
-          <th>عنوان</th>
-          <th>تصویر</th>
-          <th>آیکون</th>
+          <th>نام و نام خانوادگی</th>
+          <th>کد پرسنلی</th>
+          <th>ایمیل</th>
           <th>عملیات</th>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@
                 width="50"
                 class="m-auto"
                 (error)="onError($event)"
-              /> -->
+              />
             </td>
             <td>
               <check-img
@@ -76,9 +76,9 @@
           }
         </tbody>
       </table>
-      }@else{
+      <!--}@else{
       <p class="text-center">اطلاعاتی جهت نمایش یافت نشد.</p>
-      }
+      }-->
     </div>
   </div>
 

@@ -59,22 +59,13 @@ export class CategoryFormComponent
   }
 
   initForm() {
-    this.form = this.formBuilder.group({
-      categoryId: [this.findData ? this.findData.id : null, []],
-      title: [
-        this.findData ? this.findData.title : null,
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(45),
-          this._extensions.noWhitespaceValidator(),
-          this._extensions.noSpecialCharactersValidator(),
-        ],
-      ],
-      
-      file: [null, []],
-      icon: [null, []],
-    });
+   this.form = this.formBuilder.group({
+  fullName: ['', [Validators.required, Validators.maxLength(45)]],
+  personnelCode: ['', [Validators.required, Validators.maxLength(10)]],
+  email: ['', [Validators.required, Validators.email]],
+  phoneNumber: ['', [Validators.required, Validators.maxLength(11)]],
+  profileImage: [null],
+});
   }
 
   indexItem(itemId: string) {

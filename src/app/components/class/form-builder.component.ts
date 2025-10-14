@@ -76,14 +76,24 @@ export class FormBuilderComponent extends ShareMethodsBaseComponent {
             );
           }
         },
-        error: (err) => {
-          this.unSetLoading();
-          var errorMessage = '';
-          err.error.message.forEach((element) => {
-            errorMessage = element + ' ';
-          });
-          this.notificationsService.errorToastr(errorMessage);
-        },
+ error: (err) => {
+  this.unSetLoading();
+  let errorMessage = '';
+
+  if (err.error?.message && Array.isArray(err.error.message)) {
+    err.error.message.forEach((element: string) => {
+      errorMessage += element + ' ';
+    });
+  } else if (err.error?.message) {
+    // اگر پیام به صورت string بود
+    errorMessage = err.error.message;
+  } else {
+    errorMessage = 'خطای ناشناخته رخ داده است';
+  }
+
+  this.notificationsService.errorToastr(errorMessage);
+} , 
+
         complete: () => {
           switch (typeAction) {
             case 'create':

@@ -1,3 +1,5 @@
+
+
 import {
   Component,
   ElementRef,
@@ -24,6 +26,7 @@ import { ICategory } from '../../../../models/api/category.model';
 import { APP_ENV } from '../../../../../environment.config';
 import { PaginationComponent } from '../../../../components/features/pagination/pagination.component';
 import { CheckImgComponent } from "../../../../components/features/check-img/check-img.component";
+
 
 @Component({
   selector: 'category',
@@ -82,16 +85,16 @@ export class CategoryComponent
     });
   }
 
-  showForm(itemId?: string) {
-    if (itemId)
-      this._router.navigate([
-        '/dashboard/management-category/category-form',
-        itemId,
-      ]);
-    else
-      this._router.navigate(['/dashboard/management-category/category-form']);
-  }
-
+showForm(itemId?: string) {
+  console.log('دکمه کلیک شد ✅', itemId);
+  if (itemId)
+    this._router.navigate([
+      '/dashboard/category-management/category-form',
+      itemId,
+    ]);
+  else
+    this._router.navigate(['/dashboard/category-management/category-form']);
+}
 
   deleteItem(itemId: string) {
     this.callQuestionDialog(this.baseApiService.DestroyApi(`/Category/${itemId}`,this.env.APIEndpointMarket))

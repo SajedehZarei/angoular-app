@@ -1,3 +1,5 @@
+  
+  
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { DialogService } from '@ngneat/dialog';
@@ -24,8 +26,8 @@ export class SidebarDashboardComponent
   infoUser;
    menus = [
     {
-      title: 'داشبورد',
-      route: '/dashboard/home',
+      title: 'لیست کارمندان',
+      route: '/dashboard/category-management/category',
       isOpen: false,
       icon: 'las la-columns',
       subMenus: [],

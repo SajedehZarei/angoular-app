@@ -1,3 +1,6 @@
+
+
+
 import {
   AfterViewInit,
   Component,
@@ -182,7 +185,9 @@ export class VerifyCodeComponent
   }
 
   submitCode() {
-    this._router.navigate(['dashboard/home']);
+    this._router.navigate(['/dashboard/category-management/category'] , {
+  relativeTo: this.activatedRoute
+} );
     /*if (this.typeVerifyCode.typeCode == 'login') {
       const body = {
         code: this.form.get('codeVerify').value,
