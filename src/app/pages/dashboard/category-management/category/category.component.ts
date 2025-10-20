@@ -88,12 +88,11 @@ export class CategoryComponent
 showForm(itemId?: string) {
   console.log('دکمه کلیک شد ✅', itemId);
   if (itemId)
-    this._router.navigate([
-      '/dashboard/category-management/category-form',
-      itemId,
-    ]);
+    this._router.navigate(['/dashboard/category-management/category/detail']);
+
   else
-    this._router.navigate(['/dashboard/category-management/category-form']);
+   this._router.navigate(['/dashboard/category-management/category/detail']);
+
 }
 
   deleteItem(itemId: string) {

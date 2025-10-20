@@ -36,6 +36,14 @@ export const dashboardRoutes: Routes = [
                 '../pages/dashboard/category-management/category/category.component'
               ).then((m) => m.CategoryComponent),
           },
+          {
+          path: 'category/detail',
+          data: { breadcrumb: 'جزئیات دسته‌بندی' },
+          loadComponent: () =>
+            import(
+              '../pages/dashboard/category-management/category/detail/detail.component'
+            ).then((m) => m.DetailComponent),
+        },
               {
                 path: 'category-form',
                 data: { breadcrumb: '  فرم ایجاد دسته بندی' },
@@ -52,6 +60,7 @@ export const dashboardRoutes: Routes = [
                     (m) => m.CategoryFormComponent
                   ),
               },
+
             
           
           {

@@ -1,0 +1,102 @@
+
+<section class="style-box">
+      <div class="title-box">
+        <h5> {{findData ? 'فرم ویرایش' : 'اطلاعات کارمند '}} </h5>
+         <app-button
+      class="mr-auto"
+      [text]="' بازگشت '"
+      [icon]="'fas fa-plus-square'"
+      [typeBtn]="'style-btn style-btn-blue'"
+      (onClicked)="returnbBackPage()"
+    ></app-button>
+      </div>
+      <div class="content-box">
+        <div class="overflow-x-auto">
+             <table>
+        <thead>
+          <th> تاریخ شروع </th>
+          <th> تاریخ پایان </th>
+          <th> نوع مرخصی </th>
+          <th> ساعت مرخصی </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+             </table>
+        </div>
+        </div>
+        </section>
+        <section class="style-box">
+        <div class="overflow-x-auto">
+            <table>
+                <thead>
+                    <th> نوع مرخصی </th>
+                    <th> تعداد مرخصی </th>
+                    <th> مجموع ساعات مرخصی </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</section>
+
+<section class="style-box">
+  <div class="overflow-x-auto">
+    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+      <label  for="startDate">تاریخ شروع:</label>
+      <input type="date" formControlName="startDate" required >
+        </div>
+
+        <div class="form-group">
+      <label  for="endDate">تاریخ پایان:</label>
+      <input  type="date" formControlName="endDate" required >
+          </div>
+
+      <div class="form-group">
+      <label for="leaveType">نوع مرخصی:</label>
+        <select  formControlName="leaveType" required >
+        <option value="ساعتی">ساعتی</option>
+        <option value="روزانه">روزانه</option>
+        <option value="درون‌شهری">درون‌شهری</option>
+        <option value="برون‌شهری">برون‌شهری</option>
+      </select>
+      </div>
+
+        @if (leaveForm.get('leaveType')?.value === 'ساعتی') {
+    <div class="form-group">
+      <label>ساعت:</label>
+      <input
+        type="number"
+        formControlName="hours"
+        min="1"
+        max="24"
+        required
+      >
+    </div>
+  }
+
+       <app-button
+      class="mr-auto"
+      [text]="' افزودن '"
+      [icon]="'fas fa-plus-square'"
+      [typeBtn]="'style-btn style-btn-blue'"
+      (onClicked)="leaveForm.invalid"
+    ></app-button>
+
+    </form>
+  </div>
+</section>
+@if(showLoading){
+<app-loading-page></app-loading-page>
+}

@@ -115,6 +115,6 @@ export class CategoryFormComponent
   }
 
   returnbBackPage(){
-    this._router.navigate(['/dashboard/management-category/category'])
+    this._router.navigate(['/dashboard/category-management/category'])
   }
 }
