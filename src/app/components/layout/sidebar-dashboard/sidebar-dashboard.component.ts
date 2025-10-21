@@ -10,6 +10,7 @@ import { NotificationsService } from '../../../services/app/notifications.servic
 import { VariablesService } from '../../../services/app/variables.service';
 import { LocalStorageService } from '../../../services/app/local-storage.service';
 import { BaseApiService } from '../../../services/api/base-api.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -29,30 +30,40 @@ export class SidebarDashboardComponent
       title: 'لیست کارمندان',
       route: '/dashboard/category-management/category',
       isOpen: false,
-      icon: 'las la-columns',
+      icon: 'las la-bars ',
       subMenus: [],
     },
     {
-      title: 'مدیریت دسته بندی',
+      title: ' پنل کاربری ',
       route: '',
       isOpen: false,
       icon: 'las la-desktop',
       subMenus: [
         {
-          title: 'دسته بندی ها',
-          route: '/dashboard/management-category/category',
+          title: ' کارمند جدید ',
+          route: '/dashboard/category-management/category-form',
+        }]},
+         {
+      title: ' ارتباط با ما',
+      route: '',
+      isOpen: false,
+      icon: 'las la-phone',
+      subMenus: [{
+          title: ' *******09 ',
+           route: 'tel:09*******' 
         },
-        //  {
-        //   title: ' نوع زیر دسته بندی',
-        //   route: '/dashboard/management-category/sub-category-type',
-        // },
-        // {
-        //   title: ' زیر دسته بندی',
-        //   route: '/dashboard/management-category/sub-category',
-        // },
-       
-        
-      ],
+        {
+          title: ' email@gmail.com ',
+           route: 'mailto:email@gmail.com'
+        },
+     ],
+    },
+        {
+      title: ' خروج',
+      route: '',
+      isOpen: false,
+      icon: 'las la-door-closed',
+      subMenus: [],
     },
    ]
 
