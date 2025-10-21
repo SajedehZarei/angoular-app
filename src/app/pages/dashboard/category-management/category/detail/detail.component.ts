@@ -7,19 +7,20 @@ import { BaseApiService } from '../../../../../services/api/base-api.service';
 import { ShareMethodsBaseComponent } from '../../../../../components/class/share-methods.component'; 
 import { LoadingPageComponent } from '../../../../../components/features/loading/loading-page/loading-page.component'; 
 import { ButtonComponent } from '../../../../../components/shared/button/button.component'; 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators , ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'detailcomponent',
   standalone: true,
-  imports: [LoadingPageComponent, ButtonComponent],
+  imports: [LoadingPageComponent, ButtonComponent ,  ReactiveFormsModule],
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css'],
   providers: [NotificationsService, DialogService, VariablesService, BaseApiService],
 })
 export class DetailComponent extends ShareMethodsBaseComponent implements OnInit {
-  employee: any;
+   employee: any;
   showLoading = false;
+  leaveForm!: FormGroup; 
 
   
   @ViewChild('leaveTypeSelect') leaveTypeSelect!: ElementRef<HTMLSelectElement>;
@@ -31,7 +32,8 @@ export class DetailComponent extends ShareMethodsBaseComponent implements OnInit
     protected variablesService: VariablesService,
     protected baseApiService: BaseApiService,
     private _activatedRoute: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private fb: FormBuilder
   ) {
     super(notificationsService, dialogService, variablesService, baseApiService);
   }
@@ -42,7 +44,17 @@ export class DetailComponent extends ShareMethodsBaseComponent implements OnInit
       fullName: 'سجاد احمدی',
       personnelCode: '12345',
     };
+
+       
+    this.leaveForm = this.fb.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      leaveType: ['', Validators.required],
+      hours: [''],
+    });
   }
+
+
 
   ngAfterViewInit() {
 
@@ -56,6 +68,15 @@ export class DetailComponent extends ShareMethodsBaseComponent implements OnInit
         this.hourSection.nativeElement.style.display = 'none';
       }
     });
+  }
+
+    onSubmit() {
+    if (this.leaveForm.valid) {
+      console.log('Form submitted:', this.leaveForm.value);
+    this.notificationsService.successToastr('موفقیت', 'فرم با موفقیت ارسال شد.');
+    } else {
+     this.notificationsService.errorToastr('خطا', 'لطفاً تمام فیلدها را پر کنید.');
+    }
   }
 
   returnbBackPage() {
