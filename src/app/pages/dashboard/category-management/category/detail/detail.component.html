@@ -52,20 +52,29 @@
 
 <section class="style-box">
   <div class="overflow-x-auto">
-    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-      <label  for="startDate">تاریخ شروع:</label>
-      <input type="date" formControlName="startDate" required >
+    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()"  class="space-y-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="form-group  flex flex-col">
+      <label  for="startDate"  class="font-semibold mb-1">تاریخ شروع:</label>
+      <input type="date" 
+      formControlName="startDate" 
+      required
+        class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-400" >
         </div>
 
         <div class="form-group  flex flex-col">
-      <label  for="endDate">تاریخ پایان:</label>
-      <input  type="date" formControlName="endDate" required >
+      <label  for="endDate" class="font-semibold mb-1">تاریخ پایان:</label>
+      <input  type="date"
+       formControlName="endDate" 
+       required
+       class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-400" >
           </div>
 
       <div class="form-group  flex flex-col">
-      <label for="leaveType">نوع مرخصی:</label>
-        <select  formControlName="leaveType" required >
+      <label for="leaveType" class="font-semibold mb-1">نوع مرخصی:</label>
+        <select  formControlName="leaveType" 
+        required 
+         class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-400">
         <option value="ساعتی">ساعتی</option>
         <option value="روزانه">روزانه</option>
         <option value="درون‌شهری">درون‌شهری</option>
@@ -73,18 +82,22 @@
       </select>
       </div>
 
-        @if (leaveForm.get('leaveType')?.value === 'ساعتی') {
+     
     <div class="form-group  flex flex-col">
-      <label>ساعت:</label>
+      <label class="font-semibold mb-1">ساعت:</label>
       <input
         type="number"
         formControlName="hours"
         min="1"
         max="24"
         required
+       class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-400"
       >
+          <small *ngIf="leaveForm.get('leaveType')?.value !== 'ساعتی'" class="text-gray-500">
+    {{ leaveForm.get('hours')?.value }}
+  </small>  
     </div>
-  }
+  </div>
 
        <app-button
       class="flex justify-end"

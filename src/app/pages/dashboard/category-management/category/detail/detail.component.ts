@@ -8,11 +8,13 @@ import { ShareMethodsBaseComponent } from '../../../../../components/class/share
 import { LoadingPageComponent } from '../../../../../components/features/loading/loading-page/loading-page.component'; 
 import { ButtonComponent } from '../../../../../components/shared/button/button.component'; 
 import { FormBuilder, FormGroup, Validators , ReactiveFormsModule } from '@angular/forms';
+import { differenceInCalendarDays } from 'date-fns';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'detailcomponent',
   standalone: true,
-  imports: [LoadingPageComponent, ButtonComponent ,  ReactiveFormsModule],
+  imports: [LoadingPageComponent, ButtonComponent ,CommonModule,   ReactiveFormsModule],
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css'],
   providers: [NotificationsService, DialogService, VariablesService, BaseApiService],
@@ -21,10 +23,6 @@ export class DetailComponent extends ShareMethodsBaseComponent implements OnInit
    employee: any;
   showLoading = false;
   leaveForm!: FormGroup; 
-
-  
-  @ViewChild('leaveTypeSelect') leaveTypeSelect!: ElementRef<HTMLSelectElement>;
-  @ViewChild('hourSection') hourSection!: ElementRef<HTMLDivElement>;
 
   constructor(
     protected notificationsService: NotificationsService,
@@ -38,37 +36,60 @@ export class DetailComponent extends ShareMethodsBaseComponent implements OnInit
     super(notificationsService, dialogService, variablesService, baseApiService);
   }
 
-  ngOnInit(): void {
-    this.employee = {
-      id: 1,
-      fullName: 'سجاد احمدی',
-      personnelCode: '12345',
-    };
+ngOnInit(): void {
+  this.leaveForm = this.fb.group({
+    startDate: ['', Validators.required],
+    endDate: ['', Validators.required],
+    leaveType: ['', Validators.required],
+    hours: [{ value: '', disabled: true }, [Validators.min(1), Validators.max(24)]]
+  });
 
-       
-    this.leaveForm = this.fb.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      leaveType: ['', Validators.required],
-      hours: [''],
-    });
+  this.leaveForm.get('leaveType')?.valueChanges.subscribe((type) => {
+    if (type === 'ساعتی') {
+      // پایان = شروع
+      const startDate = this.leaveForm.get('startDate')?.value;
+      this.leaveForm.get('endDate')?.setValue(startDate);
+      this.leaveForm.get('endDate')?.disable();
+
+      // ساعت فعال
+      this.leaveForm.get('hours')?.enable();
+      this.leaveForm.get('hours')?.reset();
+    } else {
+      this.leaveForm.get('endDate')?.enable();
+      this.updateHours(); // محاسبه خودکار ساعت
+    }
+  });
+ this.leaveForm.get('startDate')?.valueChanges.subscribe((startDate) => {
+    if (this.leaveForm.get('leaveType')?.value === 'ساعتی') {
+      this.leaveForm.get('endDate')?.setValue(startDate);
+    } else {
+      this.updateHours();
+    }
+  });
+
+  // وقتی تاریخ پایان تغییر کرد
+  this.leaveForm.get('endDate')?.valueChanges.subscribe(() => this.updateHours());
+}
+
+    updateHours() {
+  const type = this.leaveForm.get('leaveType')?.value;
+  const start = this.leaveForm.get('startDate')?.value;
+  const end = this.leaveForm.get('endDate')?.value;
+
+  if (!start || !end) return;
+
+  if (type === 'روزانه' || type === 'درون‌شهری' || type === 'برون‌شهری') {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const days = differenceInCalendarDays(endDate, startDate) + 1;
+    this.leaveForm.patchValue({ hours: days * 9 });
+    this.leaveForm.get('hours')?.disable();
+  } else if (type === 'ساعتی') {
+    this.leaveForm.get('hours')?.enable();
+    this.leaveForm.get('hours')?.reset();
   }
+}
 
-
-
-  ngAfterViewInit() {
-
-    this.hourSection.nativeElement.style.display = 'none';
-
-   
-    this.leaveTypeSelect.nativeElement.addEventListener('change', () => {
-      if (this.leaveTypeSelect.nativeElement.value === 'ساعتی') {
-        this.hourSection.nativeElement.style.display = 'block';
-      } else {
-        this.hourSection.nativeElement.style.display = 'none';
-      }
-    });
-  }
 
     onSubmit() {
     if (this.leaveForm.valid) {

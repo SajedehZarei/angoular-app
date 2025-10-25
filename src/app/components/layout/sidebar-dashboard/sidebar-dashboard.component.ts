@@ -58,13 +58,6 @@ export class SidebarDashboardComponent
         },
      ],
     },
-        {
-      title: ' خروج',
-      route: '',
-      isOpen: false,
-      icon: 'las la-door-closed',
-      subMenus: [],
-    },
    ]
 
   constructor(
